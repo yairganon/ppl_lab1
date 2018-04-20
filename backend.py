@@ -38,17 +38,10 @@ def create_movies_table():
     conn.close()
 
 
-def get_all_movies():
+def get_movie(movie_id, title="", genre=""):
     conn = sqlite3.connect('lite.db')
     cur = conn.cursor()
-    cur.execute("SELECT * FROM movies")
-    return cur.fetchall()
-
-
-def get_movie(movie_id, title, genre):
-    conn = sqlite3.connect('lite.db')
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM movies WHERE (movieId=? or ?='') AND (title LIKE ?||'%'  or ?='') AND (genre LIKE ? or ?='');",
+    cur.execute("SELECT * FROM movies WHERE (movieId=? or ?='') AND (title LIKE ?||'%' or ?='') AND (genre LIKE ? or ?='');",
                 (movie_id,movie_id,title,title,genre,genre))
     rows = cur.fetchall()
     return rows
@@ -91,6 +84,6 @@ def get_all_ratings():
     return list(rows)
 
 
-#
+
 # create_ratings_table()
 # create_movies_table()

@@ -5,9 +5,8 @@ import backend as DB
 
 def view_all():
     listbox.delete(0, END)
-    for movie in DB.get_all_movies():
+    for movie in DB.get_movie(""):
         listbox.insert("end", ', '.join(movie))
-
 
 
 def search_entry():
